@@ -26,7 +26,7 @@ PHP / Laravelを使用して、記録の登録・表示・編集・削除とい�
 - ウォーキング記録の削除
 - 入力値のバリデーション
 - 年月による記録検索
-- MySQL / SQLiteによるデータ管理
+- MySQLによるデータ管理
 - データベースのバックアップ
 - シェルスクリプトによるバックアップ処理
 - macOS launchdによる自動バックアップ
@@ -62,7 +62,9 @@ PHP / Laravelを使用して、記録の登録・表示・編集・削除とい�
 
 ### データベース
 
-開発環境ではMySQLを使用し、SQLiteについても動作確認を行いました。
+開発当初はLaravelのデフォルト設定であるSQLiteを使用していましたが、
+今後のデータ増加や機能拡張を考慮し、開発途中でMySQLへ移行しました。
+現在はMySQLを使用しています。
 
 ### エラー対応・デバッグ
 
@@ -89,25 +91,19 @@ GitHubへの公開にあたり、環境変数やデータベースなどの機�
 ### 1. リポジトリをクローン
 
 ```bash
-git clone ＜GitHubリポジトリURL＞
-cd walkingRecord_forGithub
+git clone https://github.com/hhttBondgirl/walkingRecord.git
+cd walkingRecord
 composer install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate
 php artisan serve
+```
 
-# ⑧ GitHub公開版について
-
-そして最後。
-
-今回のREADMEでは、ここが結構重要。
-
-```markdown
-GitHub公開版について
+## GitHub公開版について
 
 本リポジトリはポートフォリオとして公開するため、個人情報や認証情報などの機密情報を含まない公開用構成としています。
 
-環境変数を管理する .env ファイルや、GitHubへ公開する必要のないファイルはリポジトリに含めないよう設定しています。
+環境変数を管理する `.env` ファイルや、GitHubへ公開する必要のないファイルはリポジトリに含めないよう設定しています。
 
 また、バックアップ処理に使用するファイルについても、個人環境に依存する情報を確認・整理した上で公開しています。
